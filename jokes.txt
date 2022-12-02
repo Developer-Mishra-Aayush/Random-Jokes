@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <title>Jokes Maker</title>
+</head>
+
+<body class="bg-blue-800 ">
+    <div class="bg-white mt-32 hello mx-60  flex justify-center items-center h-[50vh] rounded-3xl">
+        <section class="text-center">
+            <p class="text-2xl  font-semibold text-blue-500 space-y-3">&#x1F47B;Best Jokes To make Your Life..&#x1F47B;</p><br>
+            <div id="joke" class="text-2xl text-pink-400 space-y-3 ">Awesome jokes are waiting...</div><br>
+            <button class="bg-yellow-500 px-2 py-1 space-y-3  rounded-md  mx-56 text-white " id="btn">Next joke</button>
+        </section>
+    </div>
+</body>
+    <script>
+        const jokes=document.getElementById('joke');
+        const jokesBtn=document.getElementById('btn');
+
+        const generateJokes=()=>{
+            const setHeaders={
+                headers:{
+                    Accept:"application/json"
+                }
+            }
+            fetch('https://icanhazdadjoke.com',setHeaders)
+            .then((res)=>res.json() )
+            .then((data)=>{
+                jokes.innerHTML=data.joke;
+            }).catch((error)=>{
+                console.log(error);
+            })
+        }
+        jokesBtn.addEventListener('click',generateJokes);
+        generateJokes();
+
+        
+    </script>
+</html>
